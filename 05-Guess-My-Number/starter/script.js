@@ -23,7 +23,7 @@ document.querySelector('.check').addEventListener('click', function () {
 
   if (!guess) {
     displayMessage('⛔️ No number!');
-  }else if (guess === secretNumber) {
+  } else if (guess === secretNumber) {
     displayMessage('🎉 Correct Number!');
     document.querySelector('.number').textContent = secretNumber;
 
@@ -33,9 +33,11 @@ document.querySelector('.check').addEventListener('click', function () {
     if (score > highscore) {
       highscore = score;
       document.querySelector('.highscore').textContent = highscore;
+    }
 
-  }else if (guess > secretNumber) {
-    if(score > 1){
+    //TODO mod code below
+  } else if (guess > secretNumber) {
+    if (score > 1) {
       document.querySelector('.message').textContent = 'Too High!';
       score--;
       document.querySelector('.score').textContent = score;
@@ -43,9 +45,8 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.message').textContent = 'You lost the game!';
       document.querySelector('.score').textContent = 0;
     }
-
-  }else if (guess < secretNumber) {
-    if(score > 1){
+  } else if (guess < secretNumber) {
+    if (score > 1) {
       document.querySelector('.message').textContent = 'Too Low!';
       score--;
       document.querySelector('.score').textContent = score;
