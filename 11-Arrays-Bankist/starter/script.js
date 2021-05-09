@@ -63,9 +63,17 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-//* My Code
+
+
+
+
+
+
+//* My Code *************************************
 
 const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
   movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
@@ -82,7 +90,13 @@ const displayMovements = function (movements) {
   });
 };
 
-//* End My Code
+//* End My Code *********************************
+
+
+
+
+
+
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
@@ -231,9 +245,8 @@ btnSort.addEventListener('click', function (e) {
 });
 
 //* My Code
-
+/*
 // // LECTURES
-// /*
 
 // const currencies = new Map([
 //   ['USD', 'United States dollar'],
@@ -276,6 +289,5 @@ btnSort.addEventListener('click', function (e) {
 
 // // Join
 // console.log(letters.join(' - '));
-// */
-
+*/
 //* End My Code
