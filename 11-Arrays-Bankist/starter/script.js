@@ -133,31 +133,6 @@ const calcDisplaySummary = function (acc) {
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-//* End My Code *********************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const interest = acc.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
@@ -177,11 +152,7 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
-///////////////////////////////////////
-// Event handlers
-
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
-    // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
@@ -195,6 +166,25 @@ const updateUI = function (acc) {
     updateUI(currentAccount);
   }
 });
+
+//* End My Code *********************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
