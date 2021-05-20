@@ -69,6 +69,10 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 
+
+
+
+
 //* My Code *************************************
 
 const displayMovements = function (movements) {
@@ -102,6 +106,16 @@ const createUsernames = function (accs) {
 };
 createUsernames(accounts);
 
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  // Prevent form from submitting
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${acc.balance}€`;
@@ -120,6 +134,20 @@ const calcDisplaySummary = function (acc) {
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
 //* End My Code *********************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -151,16 +179,6 @@ const updateUI = function (acc) {
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
-
-btnLogin.addEventListener('click', function (e) {
-  // Prevent form from submitting
-  e.preventDefault();
-
-  currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
-  );
-  console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
@@ -245,6 +263,24 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
