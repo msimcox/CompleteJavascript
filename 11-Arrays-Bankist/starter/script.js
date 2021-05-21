@@ -63,18 +63,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-
-
-
-
-
-
-
-
-
-
-//* My Code *************************************
-
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
 
@@ -116,41 +104,40 @@ btnLogin.addEventListener('click', function (e) {
     acc => acc.username === inputLoginUsername.value
   );
 
-const calcDisplayBalance = function (acc) {
-  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  const calcDisplayBalance = function (acc) {
+    acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+    labelBalance.textContent = `${acc.balance}€`;
+  };
 
-};
+  const calcDisplaySummary = function (acc) {
+    const incomes = acc.movements
+      .filter(mov => mov > 0)
+      .reduce((acc, mov) => acc + mov, 0);
+    labelSumIn.textContent = `${incomes}€`;
 
-const calcDisplaySummary = function (acc) {
-  const incomes = acc.movements
-    .filter(mov => mov > 0)
-    .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+    const out = acc.movements
+      .filter(mov => mov < 0)
+      .reduce((acc, mov) => acc + mov, 0);
+    labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const out = acc.movements
-    .filter(mov => mov < 0)
-    .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+    const interest = acc.movements
+      .filter(mov => mov > 0)
+      .map(deposit => (deposit * acc.interestRate) / 100)
+      .filter(int => int >= 1)
+      .reduce((acc, int) => acc + int, 0);
+    labelSumInterest.textContent = `${interest}€`;
+  };
 
-  const interest = acc.movements
-    .filter(mov => mov > 0)
-    .map(deposit => (deposit * acc.interestRate) / 100)
-    .filter(int => int >= 1)
-    .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
-};
+  const updateUI = function (acc) {
+    //display movements
+    displayMovements(acc.movements);
 
-const updateUI = function (acc) {
-  //display movements
-  displayMovements(acc.movements);
+    //display balance
+    calcDisplayBalance(acc);
 
-  //display balance
-  calcDisplayBalance(acc);
-
-  //display summary
-  calcDisplaySummary(acc);
-};
+    //display summary
+    calcDisplaySummary(acc);
+  };
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     labelWelcome.textContent = `Welcome back, ${
@@ -212,7 +199,6 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
-
 //loan functionality
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
@@ -230,25 +216,6 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.value = '';
 });
 
-//* End My Code *********************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -264,8 +231,6 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.value = '';
 });
 
-
-
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
@@ -273,35 +238,6 @@ btnSort.addEventListener('click', function (e) {
   sorted = !sorted;
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//* My Code *************************************
 // // LECTURES
 
 // const currencies = new Map([
@@ -361,5 +297,3 @@ const movementsDescriptions = movements.map(
     )}`
 );
 console.log(movementsDescriptions);
-
-//* End My Code *********************************
