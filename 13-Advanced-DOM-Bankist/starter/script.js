@@ -168,3 +168,20 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+// 190. DOM Traversing
+// const h1 = document.querySelector('h1');
+
+// // Going down to child
+// h1.firstElementChild.style.color = 'black';
+// h1.lastElementChild.style.color = 'blue';
+
+// // Going up to parent
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+// h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+// // Going sideways to sibling
+// [...h1.parentElement.children].forEach(function (el) {
+//   if (el !== h1) el.style.transform = 'scale(0.5)';
+// });
