@@ -123,3 +123,48 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 document.querySelector('.nav').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
 });
+
+//189. Event Delegation: Implementing Page Navigation
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+//btton scrolling
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  )});
+
+// //smooth scrolling
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+// el.addEventListener('click', function (e) {
+//   e.preventDefault();
+//   const id = this.getAttribute('href');
+//   console.log(id);
+//   document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+// });
+// });
+
+//Smooth scrolling using delegation instead, better for performance than the forEach loop above (if there are 10,000 elements in the loop, instead of just three, it would be a huge performance hit)
+
+// 1. Add event listener to common parent element
+// 2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
