@@ -14,5 +14,18 @@ console.log(jonas);
 const matilda = new Person('Matilda', 2017);
 const jack = new Person('Jack', 1975);
 
-//show that jonas is an incance of the person constructor
+//show that jonas is an instance of the person constructor
 console.log(jonas instanceof Person);
+
+//206. Prototypes
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+jonas.calcAge();
+matilda.calcAge();
+
+Person.prototype.species = 'Homo Sapiens';
+console.log(jonas.species, matilda.species);
+
