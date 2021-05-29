@@ -12,15 +12,28 @@ const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 //END STARTER CODE
 
-229. Using the Geolocation API
 if (navigator.geolocation)
 navigator.geolocation.getCurrentPosition(
     function (position) {
         const { latitude } = position.coords;
         const { longitude } = position.coords;
         console.log(`https://www.google.pt/maps/@37.0451031,-7.8410238`);
-    },
+
+    const coords = [latitude, longitude];
+
+    const map = L.map('map').setView(coords, 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    L.marker(coords)
+      .addTo(map)
+      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+      .openPopup();
+  },
     function () {
     alert('Could not get your position');
   }
-);
+)
